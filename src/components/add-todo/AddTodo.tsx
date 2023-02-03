@@ -71,7 +71,7 @@ const AddTodo = () => {
                             }
                         })}
                         id="outlined-basic"
-                        label="What needs to be done"
+                        label={errors?.input ? errors?.input?.message : "What needs to be done"}
                         color={errors?.input ? "error" : "success"}
                         onChange={e => field.onChange(e)}
                         variant="outlined"/>
@@ -80,13 +80,8 @@ const AddTodo = () => {
                 <Btn type="outlined" color="success" onClick={handleSubmit(onSubmit)}>
                     Add
                 </Btn>
-
-                {errors?.input &&
-                <Typography component="h4" color="error">
-                    {errors?.input?.message || "Enter the text"}
-                </Typography>}
             </Box>
-
+        <br/>
             <Btn type="outlined" color="error"
                  onClick={removeAll}
                  disabled={!todos.length}>
