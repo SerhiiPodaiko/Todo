@@ -10,14 +10,14 @@ interface TodoItemProps {
     item: {
         title: string,
         done: boolean,
-        id: string
+        id: number
     }
 }
 
 const TodoItem: FC<TodoItemProps> = ({item}) => {
     const dispatch = useAppDispatch()
 
-    const removeItem = (id: string) => {
+    const removeItem = (id: number) => {
         confirmAlert({
             title: 'WARNING',
             message: 'You really want to delete',
@@ -54,9 +54,11 @@ const TodoItem: FC<TodoItemProps> = ({item}) => {
             <Box component="span" sx={{textDecoration: item.done ? "line-through" : ""}}>
                 {item.title}
             </Box>
-            <Btn type="contained" color="error" onClick={() => removeItem(item.id)}>
-                Delete
-            </Btn>
+            <Box component="span" onClick={(e) => e.stopPropagation()}>
+                <Btn type="contained" color="error" onClick={() => removeItem(item.id)}>
+                    Delete
+                </Btn>
+            </Box>
         </ListItem>
     )
 }

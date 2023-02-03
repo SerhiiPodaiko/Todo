@@ -7,8 +7,8 @@ type TodosState = {
 
 const initialState: TodosState = {
     todos: [
-        {title: 'Open a door', done: false, id: '1'},
-        {title: 'Close a door', done: false, id: '2'}
+        {title: 'Open a door', done: false, id: 1},
+        {title: 'Close a door', done: false, id: 2}
     ]
 }
 

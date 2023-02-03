@@ -2,7 +2,7 @@ import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 import {useForm, SubmitHandler, Controller} from "react-hook-form"
 import {confirmAlert} from "react-confirm-alert"
-import uuid from "uuid"
+// import uuid from "uuid"
 import TextField from "@mui/material/TextField"
 import Btn from "../../ui/Button"
 import {useAppDispatch, useAppSelector} from "../../hooks/useRedux"
@@ -22,7 +22,7 @@ const AddTodo = () => {
         const newTodo = {
             title: data.input,
             done: false,
-            id: uuid.v4()
+            id: Math.floor(Math.random() * 10000)       //uuid.v4() don`t work in deploy
         }
 
         dispatch(addTodo(newTodo))
