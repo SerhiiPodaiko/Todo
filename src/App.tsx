@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {FC} from "react"
+import AppBar from "./components/header/Header"
+import TodoSearch from "./components/todo-search/TodoSearch"
+import Box from "@mui/material/Box"
+import TodoList from "./components/todo-list/TodoList"
+import AddTodo from "./components/add-todo/AddTodo"
+import TodoContainer from "./HOC/TodoContainer"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface AppProps {
+    value: string,
+    setValue: () => void,
+    filterActive: string,
+    setFilterActive: () => void,
+    visibleFilterTodos: [],
+    props: any
 }
 
-export default App;
+const App: FC<AppProps> = ({value, setValue, filterActive, setFilterActive, visibleFilterTodos}) => {
+    return (
+        <div className="app">
+            <AppBar/>
+
+            <Box component="main" sx={{padding: '50px 15px'}}>
+                <TodoSearch
+                    filterActive={filterActive}
+                    setFilterActive={setFilterActive}
+                    value={value}
+                    setValue={setValue}/>
+
+                <TodoList
+                    visibleFilterTodos={visibleFilterTodos}/>
+
+                <AddTodo/>
+            </Box>
+
+        </div>
+    )
+}
+
+export default TodoContainer(App)
